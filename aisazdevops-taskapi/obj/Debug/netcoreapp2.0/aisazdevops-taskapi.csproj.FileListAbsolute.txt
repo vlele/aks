@@ -1,0 +1,11 @@
+E:\Users\Itesh\source\repos\aisazdevops-taskapi\aisazdevops-taskapi\obj\Debug\netcoreapp2.0\aisazdevops-taskapi.csprojResolveAssemblyReference.cache
+E:\Users\Itesh\source\repos\aisazdevops-taskapi\aisazdevops-taskapi\obj\Debug\netcoreapp2.0\aisazdevops-taskapi.csproj.CoreCompileInputs.cache
+E:\Users\Itesh\source\repos\aisazdevops-taskapi\aisazdevops-taskapi\obj\Debug\netcoreapp2.0\aisazdevops-taskapi.AssemblyInfoInputs.cache
+E:\Users\Itesh\source\repos\aisazdevops-taskapi\aisazdevops-taskapi\obj\Debug\netcoreapp2.0\aisazdevops-taskapi.AssemblyInfo.cs
+E:\Users\Itesh\source\repos\aisazdevops-taskapi\aisazdevops-taskapi\bin\Debug\netcoreapp2.0\aisazdevops-taskapi.deps.json
+E:\Users\Itesh\source\repos\aisazdevops-taskapi\aisazdevops-taskapi\bin\Debug\netcoreapp2.0\aisazdevops-taskapi.runtimeconfig.json
+E:\Users\Itesh\source\repos\aisazdevops-taskapi\aisazdevops-taskapi\bin\Debug\netcoreapp2.0\aisazdevops-taskapi.runtimeconfig.dev.json
+E:\Users\Itesh\source\repos\aisazdevops-taskapi\aisazdevops-taskapi\bin\Debug\netcoreapp2.0\aisazdevops-taskapi.dll
+E:\Users\Itesh\source\repos\aisazdevops-taskapi\aisazdevops-taskapi\bin\Debug\netcoreapp2.0\aisazdevops-taskapi.pdb
+E:\Users\Itesh\source\repos\aisazdevops-taskapi\aisazdevops-taskapi\obj\Debug\netcoreapp2.0\aisazdevops-taskapi.dll
+E:\Users\Itesh\source\repos\aisazdevops-taskapi\aisazdevops-taskapi\obj\Debug\netcoreapp2.0\aisazdevops-taskapi.pdb
