@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2020
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "aisazdevops-taskapi", "aisazdevops-taskapi\aisazdevops-taskapi.csproj", "{EF83117C-87D1-41B7-B49F-1695584C9627}"
 EndProject
