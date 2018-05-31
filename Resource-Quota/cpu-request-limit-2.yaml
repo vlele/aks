@@ -1,4 +1,3 @@
-cpu-request-limit-2.yaml docs/tasks/configure-pod-container  
 apiVersion: v1
 kind: Pod
 metadata:

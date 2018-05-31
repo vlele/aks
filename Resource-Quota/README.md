@@ -2,7 +2,7 @@
 This is the readme document for Resource Quota demo in Kubennetes . This demo shows how to set quotas for the total amount memory and CPU that can be used by all Containers running in a namespace in an AKS Cluster. The demonstration is going to be done in the same AKS Cluster that was built by of Azure DevOps module("aisazdevops-taskapi").
 
 **Implementation:** 
-We use an already created AKS Cluster and create a ResourceQuota object. Then create a namespace and after that create Pods asking 100  CPUs which is beyond quota.
+We use an already created AKS Cluster and create a LimitRange object(cpu-limit-range/mem-min-max-demo-lr). Then create a namespace and create Pods asking 100 CPUs which is beyond quota. Similarly, first create a pod within the defined memory limit. Then create a pod beyond the defined memory limit. 
 
 
 **Pre-requisite:**
@@ -16,21 +16,30 @@ We use an already created AKS Cluster and create a ResourceQuota object. Then cr
 **Steps:**
 
 0) Clone the GIT Repo from the "https://github.com/icsimlai/ais-taskapi-aks.git"
-1) Change Power Shell(PS) Azure CLI directory to '..\GitHub\ais-taskapi-aks\Resource-Quota' and execute the below command to create a namespace and after that create a Pod with 100 CPUs:
-> kubectl create namespace cpu-example
 
-> kubectl create -f cpu-request-limit-2.yaml --namespace=cpu-example
+1) Change Power Shell(PS) Azure CLI directory to '..\GitHub\ais-taskapi-aks\Resource-Quota' and execute the below command to create a namespace and after that create a Pod with 100 CPUs:
+> kubectl create namespace cpu-example  <-- Create Namespace
+
+> kubectl create -f cpu-defaults.yaml --namespace=cpu-example  <-- Create CPU constraints of 1-CPU and 0.5-CPU default
+
+> kubectl create -f cpu-defaults-demo.yaml --namespace=cpu-example   <--Create Pod w/o asking CPU requests/limits and see it's ok
+
+> kubectl get pod default-cpu-demo --output=yaml --namespace=cpu-example  <--Check Pod got defaults w/o asking CPU requests/limits
+
+> kubectl create -f cpu-request-limit-2.yaml --namespace=cpu-example   <--Create Pod w/o asking CPU requests/limits and see it's ok
 
 2) Run the following command to check the Pod creation:
-> kubectl get pods
 
-| NAME |      | READY |    | STATUS |        | RESTARTS |    | AGE |
+> kubectl get pods --namespace=cpu-example
 
-cpu-demo-2   0/1       **Pending**             0          49s
+| NAME |         | READY |    | STATUS |        | RESTARTS |    | AGE |
 
+cpu-demo-2         0/1       **Pending**   0          40s
+
+default-cpu-demo   1/1       Running   0          15m
 
 3. Run the following command to check the Pod creation details:
-> kubectl describe pod cpu-demo-2
+> kubectl describe pod cpu-demo-2 --namespace=cpu-example
 
 …
 
@@ -38,8 +47,7 @@ Events:
 
   | Type |     | Reason  |           | Age |               | From  |              | Message |
 
-  Warning  **FailedScheduling**  12s (x8 over 1m)  default-scheduler  0/3 nodes are available: 3 **Insufficient cpu**, 3 NodeNotReady.
-
+  | Warning |     | FailedScheduling  | | 15s (x14 over 2m) |   | default-scheduler  | | No nodes are available that match all of the predicates: Insufficient cpu (1). |
 
 As you can see the error message says “**PodScheduled   False**” and the reason is “**Insufficient cpu,..**”
 
@@ -66,7 +74,7 @@ The output shows the minimum and maximum memory constraints as expected. But not
 3) Run the following command to create a Pod that has one Container. The Container manifest specifies a memory request of 600 MiB and a memory limit of 800 MiB. These satisfy the minimum and maximum memory constraints imposed by the LimitRange.:
 > kubectl create -f memory-constraints-pod.yaml --namespace=constraints-mem-example
 
-4) Verify that the Pod’s Container is running:
+4) Verify that the Pod’s Container status is running:
 > kubectl get pod constraints-mem-demo --namespace=constraints-mem-example
 
 5) View detailed information about the Pod:

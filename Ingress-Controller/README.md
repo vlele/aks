@@ -1,5 +1,5 @@
 # Ingress-Controller Deployment
-This is the readme document of the Ingress-Controller Deployment. The demonstration is going to be done in the same AKS Cluster that was built by Azure DevOps module("aisazdevops-taskapi"). This demo walks through a sample deployment of the NGINX ingress controller in an AKS cluster.  Two applications are run in the AKS cluster, each of which is accessible over a single address using the mechanism of “Ingress Controller”. A namespace ('prod') will be created and both application deployment will be done in that namespace.Then the KUBE-LEGO project is used to automatically generate and configure Let's Encrypt certificates. 
+This is the readme document of the Ingress-Controller Deployment. This demo walks through a sample deployment of the NGINX ingress controller in an AKS cluster.  Two applications are run in a AKS cluster, each of which is accessible over a single address using the mechanism of “Ingress Controller”. A namespace ('prod') will be created and both application deployment will be done in that namespace.Then the KUBE-LEGO project is used to automatically generate and configure Let's Encrypt certificates. 
 
 **Implementation**: 
 

@@ -30,13 +30,13 @@ Open a new Azure CLI command Window and execute the following commands:
 
 > az account list   <-- From the list note down the Subscription Id where the Cluster is running
 
-> azure account set <SubscriptionId>  <-- Feed the Subscription Id noted from above step
+> azure account set [ SubscriptionId ]  <-- Feed the Subscription Id noted from above step
 
-> az aks get-credentials --resource-group <ResourceGroup> --name ais-taskapi-aks <--Use the AKS control plane ResourceGroup from portal
+> az aks get-credentials --resource-group [ myResourceGroup ] --name ais-taskapi-aks <--Use the AKS control plane ResourceGroup from portal
  
 > az provider register -n Microsoft.ContainerService
  
-> az aks browse --resource-group <ResourceGroup> --name ais-taskapi-aks
+> az aks browse --resource-group [ myResourceGroup ] --name ais-taskapi-aks
 
 9) In the DevOps Project Dashboard there is a link (AKS deployed application link) on the top right below the EXTERNAL ENDPOINT header. Click the link to browse the Application URL deployed in AKS cluster. The Task API Application Page should show once the URL is appended with "/swagger". The Application is yet to connect to the backend DB. To connect to the backend MongoDB, please follow the steps below.
 
