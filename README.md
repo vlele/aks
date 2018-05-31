@@ -10,48 +10,48 @@ AKS Custer(aisazdevops)
 - Use the AzPowerShell in Admin mode and execute the below steps 
 - Set the execution policy in Power Shell 'Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned'
 - Admin Access to Azure Portal
-- The AKS Cluster is already created and Sample “Hello World” application running under 'prod' namespace
 
 **Steps**:
 
 **Create Azure DevOps Project Using Git Hub Code:**
-1) Login to Azure Portal and click “+Create a resource” and Click “Create” Button on the UI that shows up
+1) Login to Azure Portal and click “+Create a resource” and type "DevOps" in the search box and choose "DevOps Project". Click “Create” Button on the UI that shows up
 2) Choose “Bring your own code” and click “Next”  on the UI that shows up
-3) On the "Bring your own code" UI provide name of the "Code Repository" as Git Hub, "Repository" and "Branch" names  and click “Next”  
+3) On the "Bring your own code" UI provide name of the "Code Repository" as Git Hub; provide  "Repository" and "Branch" names  and click “Next”  
 4) Choose “Asp.Net Core” for the web application framework and click “Next”  on the UI that shows up
-5) Choose “Kubernetes Service” and click “Next”  on the UI that shows up
-6) Provide the VSTS and Azure information asked on the UI that shows up and click “Done”  
-7) After Deployment was successful the Dashboard is shown in the portal. A project is set up in a repository in our VSTS account, a build executes, and our application deploys to AKS. This dashboard provides visibility into our code repository, VSTS CI/CD pipeline, and our application in AKS.
-8) After Deployment to AKS cluster is completed a deployment is going to be made in "dev" namespace in the worked node. To see it, browse the Dashboard in AKS by doing the following steps:
-Open a new Azure CLI command Window and execute the following commands to open the AKS Dashboard,
-
-> az login
+5) Choose “Kubernetes Service” and provide the "Path to Chart Folder" as "**/charts/sampleapp" and click “Next”
+6) Provide VSTS and Azure input on the UI that comes up and click “Change”. Change the fields as shown and then click “Ok”. Click “Done.
+7) After Deployment is successful the Dashboard is shown in the portal. A project is set up in the repository in our VSTS account, a build executes, and our application is deployed to AKS in "dev" namespace. This dashboard provides visibility into our code repository, VSTS CI/CD pipeline,and to our application in AKS cluster.
+8) To see the Kubernetes Dashboard in AKS do the following,
+Open a new Azure CLI command Window and execute the following commands:
 
 > Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
 
+> az login          <-- On the command window there will be an URL given for log in. Use it and the code for authentication
+
 > az account list   <-- From the list note down the Subscription Id where the Cluster is running
 
-> azure account set <SubscriptionId>
+> azure account set <SubscriptionId>  <-- Feed the Subscription Id noted from above step
 
+> az aks get-credentials --resource-group <ResourceGroup> --name ais-taskapi-aks <--Use the AKS control plane ResourceGroup from portal
+ 
 > az provider register -n Microsoft.ContainerService
  
-> az aks get-credentials --resource-group azdevopsdemo9110 --name azdevopsdemo
- 
-> az aks browse --resource-group azdevopsdemo9110 --name azdevopsdemo
+> az aks browse --resource-group <ResourceGroup> --name ais-taskapi-aks
 
-9) In the DevOps Project Dashboard there is a link(AKS deployed application link) on the top right below the EXTERNAL ENDPOINT header. Click the link to browse the Application URL deployed in AKS cluster. The page should show the Task API Application Page.
+9) In the DevOps Project Dashboard there is a link (AKS deployed application link) on the top right below the EXTERNAL ENDPOINT header. Click the link to browse the Application URL deployed in AKS cluster. The Task API Application Page should show once the URL is appended with "/swagger". The Application is yet to connect to the backend DB. To connect to the backend MongoDB, please follow the steps below.
 
 **Mongo DB Installation:**
 
-1) Open another Powershell window in admin mode and run the commands of 8 step except the last one 
-2) Clone the GIT Repo from the "https://github.com/icsimlai/ais-taskapi-aks.git"
-3) Change Power Shell(PS) Azure CLI directory to '..\GitHub\ais-taskapi-aks\mongodb' and Proceed with the Mongo DB installation steps as mentioned by the Readme file in "..\GitHub\ais-taskapi-aks\mongodb" 
+1) Open another Powershell window in admin mode and run the above commands(8th step) except the last one(az aks browse...) 
+2) Clone the GIT Repo from the "https://github.com/icsimlai/ais-taskapi-aks.git" and then unzip to a folder. 
+3) Change Power Shell(PS) Azure CLI directory to '..\GitHub\ais-taskapi-aks\mongodb' and proceed with the Mongo DB installation steps as mentioned by the Readme file in "..\GitHub\ais-taskapi-aks\mongodb" 
 4) Test the Task API Application in browser and verify that it works with backend DB as expected by running some manual tests i.g., create an user , task  ... 
 
 **CI/CD Pipeline:**
-1) Launch the "aisazdevops-taskapi.sln" in VS 2017 and make some code change e.g., version no. under "swagger:" in "appsettings.json" and build locally using VS 2017 to ensure zero build error and check in. 
-2) Open the Azure Portal DevOps Project Dashboard and see that the build has kicked in and is under progress. Wait for some time till the Release shows green tick mark.
-3) Test the Task API Application in browser and verify that it shows the changes as expected 
+1) Ensure that the AKS Cluster is already created and Sample “TaskApi” application running under 'dev' namespace
+2) Launch the "aisazdevops-taskapi.sln" in VS 2017 and make some code change e.g., version no. under "swagger:" in "appsettings.json" and build locally using VS 2017 to ensure zero build error and check in. 
+3) Open the Azure Portal DevOps Project Dashboard and see that the build has kicked in and is under progress. Wait for some time till the Release shows green tick mark.
+4) Test the Task API Application in browser and verify that it shows the changes as expected 
 
 **AKS Features Demo:**
 

@@ -1,5 +1,5 @@
 # Install Mongo DB as a Statefulset
-This is the readme document of the Mongo DB Deployment as a Statefulset. This is expected to be deployed in a particular namespace in AKS cluster. The authorization configuration scripts are given for three namespaces('dev', 'qa' and 'prod'). The demonstration is going to be done in the same AKS Cluster that is built by of Azure DevOps module("aisazdevops-taskapi"). A namespace dev will be created and both mongo db and taskapi application will be run in that namespace. This is used for most of the  proof of concepts on AKS and Azure DevOps series.
+This is the readme document of the Mongo DB Deployment as a Statefulset. A namespace "dev" is created as part of Azure DevOps project creation. Both mongo db and taskapi application will be run in "dev" namespace in AKS cluster. The authorization configuration scripts are given for three namespaces('dev', 'qa' and 'prod'). The demonstration is going to be done using the script ending with name "_dev". This is used for most of the  proof of concepts on AKS and Azure DevOps series.
 
 **Pre-requisite:**
 - Azure CLI installed in the machine where the Kubectl Client will run. It could be Laptop, Desktop, Portal. Azure CLI can be installed from here, https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest
@@ -20,9 +20,9 @@ Note: Please make sure to use the "configure_repset_auth_dev.sh" when mongodb is
 
 **Verification Steps:**
 
-> kubectl get statefulset  
+> kubectl get statefulset --namespace dev  
 
-> kubectl get pvc
+> kubectl get pvc --namespace dev
 
 
 **Cleanup Steps:**
