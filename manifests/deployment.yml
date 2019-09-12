@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: vleleaks 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vleleaks 
+    spec:
+      containers:
+        - name: vleleaks 
+          image: vlakstest1b359.azurecr.io/vleleaks 
+          ports:
+          - containerPort: 80
